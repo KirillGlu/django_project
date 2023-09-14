@@ -3,23 +3,23 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "name": "Фрукт",
-      "description": "Вкусные фрукты"
+      "name": "Р¤СЂСѓРєС‚",
+      "description": "Р’РєСѓСЃРЅС‹Рµ С„СЂСѓРєС‚С‹"
     }
   },
   {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-      "name": "Овощи",
-      "description": "Все овощи"
+      "name": "РћРІРѕС‰Рё",
+      "description": "Р’СЃРµ РѕРІРѕС‰Рё"
     }
   },
   {
     "model": "catalog.category",
     "pk": 3,
     "fields": {
-      "name": "Ягоды",
+      "name": "РЇРіРѕРґС‹",
       "description": ""
     }
   },
@@ -27,7 +27,7 @@
     "model": "catalog.category",
     "pk": 4,
     "fields": {
-      "name": "Грибы",
+      "name": "Р“СЂРёР±С‹",
       "description": ""
     }
   },
@@ -35,7 +35,7 @@
     "model": "catalog.category",
     "pk": 5,
     "fields": {
-      "name": "Бобовые",
+      "name": "Р‘РѕР±РѕРІС‹Рµ",
       "description": ""
     }
   },
@@ -43,8 +43,8 @@
     "model": "catalog.product",
     "pk": 1,
     "fields": {
-      "name": "Яблоко",
-      "description": "Зеленое",
+      "name": "РЇР±Р»РѕРєРѕ",
+      "description": "Р—РµР»РµРЅРѕРµ",
       "image": "",
       "category": 1,
       "purchase_price": 42,
@@ -56,8 +56,8 @@
     "model": "catalog.product",
     "pk": 2,
     "fields": {
-      "name": "Огурец",
-      "description": "свежий, вкусный",
+      "name": "РћРіСѓСЂРµС†",
+      "description": "СЃРІРµР¶РёР№, РІРєСѓСЃРЅС‹Р№",
       "image": "products/cucumber-1.jpg",
       "category": 2,
       "purchase_price": 23,
@@ -69,8 +69,8 @@
     "model": "catalog.product",
     "pk": 3,
     "fields": {
-      "name": "Вишня",
-      "description": "красная",
+      "name": "Р’РёС€РЅСЏ",
+      "description": "РєСЂР°СЃРЅР°СЏ",
       "image": "",
       "category": 3,
       "purchase_price": 12,
@@ -82,8 +82,8 @@
     "model": "catalog.product",
     "pk": 4,
     "fields": {
-      "name": "Мухомор",
-      "description": "Вкусный",
+      "name": "РњСѓС…РѕРјРѕСЂ",
+      "description": "Р’РєСѓСЃРЅС‹Р№",
       "image": "",
       "category": 4,
       "purchase_price": 1,
@@ -95,8 +95,8 @@
     "model": "catalog.product",
     "pk": 5,
     "fields": {
-      "name": "Боб",
-      "description": "старый",
+      "name": "Р‘РѕР±",
+      "description": "СЃС‚Р°СЂС‹Р№",
       "image": "",
       "category": 5,
       "purchase_price": 1002,
