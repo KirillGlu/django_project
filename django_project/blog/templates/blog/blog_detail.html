@@ -1,0 +1,25 @@
+{% extends "catalog/base.html" %}
+{% load my_tags %}
+{% block content %}
+    <div class="container">
+        <header>
+            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <h1 class="display-4 fw-normal text-body-emphasis"></h1>
+                <p class="fs-5 text-body-secondary"></p>
+            </div>
+        </header>
+        <main>
+            <div class="row">
+                <div class="col-4">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">"{{ post.title }}" ({{ post.slug }}) </h5>
+                            <p class="card-text">{{ post.content }}</p>
+                            <p class="card-text">Просмотры : {{ post.views_count }}</p>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+    </div>
+{% endblock %}

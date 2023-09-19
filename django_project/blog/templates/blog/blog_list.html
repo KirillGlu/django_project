@@ -1,0 +1,27 @@
+{% extends "catalog/base.html" %}
+{% load my_tags %}
+{% block content %}
+<div>
+    <a class="btn btn-outline-primary" href="{% url 'blog:blog-create' %}">Добавить материал</a>
+</div>
+<div class="container">
+    <main>
+        <div class="row">
+            {% for post in objects_list %}
+            <div class="col-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content | truncatechars:100 }}</p>
+                        <p class="card-text">Дата создания: {{ post.created_date }}</p>
+                        <a href="/blog/{{ post.pk }}" class="btn btn-primary">Открыть</a>
+                        <a href="{% url 'blog:blog-edit' post.pk %}" class="btn btn-warning">Изменить</a>
+                        <a href="{% url 'blog:blog-delete' post.pk %}" class="btn btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}
