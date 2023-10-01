@@ -1,55 +1,47 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from pytils.translit import slugify
 
+from catalog.forms import ProductForm
 from catalog.models import Product
-
-
-# def home(request):
-#     return render(request, 'catalog/home.html')
 
 
 class ProductListView(ListView):
     model = Product
     template_name = 'catalog/product_list.html'
-
+    context_object_name = 'products'
 
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'catalog/products.html'
-    context_object_name = 'post'
-    pk_url_kwarg = 'pk'
+    template_name = 'catalog/product_detail.html'
+    context_object_name = 'product'
 
 
 class ProductCreateView(CreateView):
     """
-    Контроллер создания поста блога
+    Контроллер добавления нового продукта
     """
 
     model = Product
-    fields = ('name', 'category', 'description', 'purchase_price', 'date_of_creation', 'last_modified_date',)
-    success_url = reverse_lazy("catalog:product_list")
+    success_url = reverse_lazy("catalog:home")
+    form_class = ProductForm
 
-    # Реализуем динамический slug
+class ProductUpdateView(UpdateView):
+    """
+    Контроллер редактирования продукта
+    """
 
-    # def form_valid(self, form):
-    #     if form.is_valid():
-    #         new_product = form.save()
-    #         new_product.slug = slugify(new_product.title)
-    #         new_product.save()
-
-        # return super().form_valid(form)
-# def home(request):
-#     products_list = Product.objects.all()
-#     context = {
-#         'object_list': products_list,
-#         'title': 'Главная'
-#     }
-#     return render(request, 'catalog/home.html', context)
+    model = Product
+    success_url = reverse_lazy("catalog:home")
+    form_class = ProductForm
 
 
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'catalog/product_confirm_delete.html'
+    success_url = reverse_lazy('catalog:home')
 
 
 def contacts(request):

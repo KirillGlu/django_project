@@ -3,7 +3,9 @@
 {% block content %}
 {% for object in object_list %}
 <div>
-    <a class="btn btn-outline-primary" href="{% url 'catalog:create' %}">Добавить продукт</a>
+    <div class="col-12">
+        <a class="btn btn-outline-primary" href="{% url 'catalog:create' %}">Добавить продукт</a>
+    </div>
 </div>
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
@@ -11,7 +13,7 @@
             <p class="card-text">{{ object }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href="/catalog/{{ post.pk }}" class="btn btn-primary">Открыть</a>
+                    <a href="{% url 'catalog:product_detail' object.pk %}" class="btn btn-primary">Открыть</a>
                 </div>
             </div>
         </div>
