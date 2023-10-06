@@ -3,9 +3,7 @@
 {% block content %}
 {% for object in object_list %}
 <div>
-    <div class="col-12">
-        <a class="btn btn-outline-primary" href="{% url 'catalog:create' %}">Добавить продукт</a>
-    </div>
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create' %}">Добавить продукт</a>
 </div>
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
