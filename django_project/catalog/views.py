@@ -5,12 +5,14 @@ from pytils.translit import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin
 from catalog.forms import ProductForm
 from catalog.models import Product
+from catalog.services import get_categories
 
 
 class ProductListView(ListView):
     model = Product
     template_name = 'catalog/product_list.html'
     context_object_name = 'products'
+    category = get_categories()
 
 
 class ProductDetailView(DetailView):
