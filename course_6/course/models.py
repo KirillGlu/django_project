@@ -1,5 +1,9 @@
 from django.db import models
 
+from users.models import User
+
+NULLABLE = {"null": True, "blank": True}
+
 
 class Course(models.Model):
     """
@@ -17,9 +21,15 @@ class Course(models.Model):
     title = models.CharField(max_length=50, verbose_name='название')
     preview = models.ImageField(upload_to='course/', verbose_name='превью', null=True)
     description = models.TextField(verbose_name='описание')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'курс'
+        verbose_name_plural = 'курсы'
+
 
 
 class Lesson(models.Model):
@@ -49,3 +59,29 @@ class Lesson(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
+    date = models.DateTimeField(verbose_name='дата оплаты', **NULLABLE)
+    course = models.ForeignKey(Course, verbose_name='оплаченный курс', related_name='payment',
+                               on_delete=models.CASCADE, **NULLABLE)
+    lesson = models.ForeignKey(Lesson, verbose_name='оплаченный урок', related_name='payment',
+                               on_delete=models.CASCADE,**NULLABLE)
+    total = models.FloatField(verbose_name='сумма оплаты', **NULLABLE)
+
+    payment_mode = [
+        ('наличные', 'Наличные'),
+        ('перевод на счет', 'Перевод на счет'),
+    ]
+    payment_choice = models.CharField(max_length=50, choices=payment_mode,
+                                      verbose_name='способ оплаты')
+
+    def __str__(self):
+        return f'{self.user}, {self.total}: {self.lesson if self.lesson else self.course}'
+
+    class Meta:
+        verbose_name = 'платеж'
+        verbose_name_plural = 'платежи'
+
+        ordering = ('date',)
