@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from course.models import Course, Lesson, Payment
+from course.models import Course, Lesson, Payment, Subscription
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -17,6 +17,11 @@ class CourseSerializer(serializers.ModelSerializer):
     def get_lessons(self, course):
         return [lesson.title for lesson in course.lesson.all()]
 
+    def get_is_subscribed(self, obj):
+        user = self.context['request'].user
+
+        return Subscription.objects.filter(user=user, course=obj).exists()
+
 
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,4 +32,10 @@ class LessonSerializer(serializers.ModelSerializer):
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
+        fields = '__all__'
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
         fields = '__all__'

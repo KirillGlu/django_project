@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+
 
 from users.models import User
 
@@ -85,3 +87,12 @@ class Payment(models.Model):
         verbose_name_plural = 'платежи'
 
         ordering = ('date',)
+
+
+class Subscription(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Пользователь")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс")
+
+    def __str__(self):
+        return f'{self.user.email} - {self.course.title}'
