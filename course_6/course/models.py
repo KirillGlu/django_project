@@ -71,6 +71,7 @@ class Payment(models.Model):
     lesson = models.ForeignKey(Lesson, verbose_name='оплаченный урок', related_name='payment',
                                on_delete=models.CASCADE,**NULLABLE)
     total = models.FloatField(verbose_name='сумма оплаты', **NULLABLE)
+    amount = models.IntegerField(default=0, blank=True, null=True, verbose_name='стоимость')
 
     payment_mode = [
         ('наличные', 'Наличные'),

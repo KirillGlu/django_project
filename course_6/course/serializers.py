@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from course.models import Course, Lesson, Payment, Subscription
+from course.services import stripe_get_link
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -21,6 +22,13 @@ class CourseSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
 
         return Subscription.objects.filter(user=user, course=obj).exists()
+
+    def get_payment_link(self, obj):
+        return stripe_get_link(obj)
+
+    class Meta:
+        model = Course
+        fields = '__all__'
 
 
 class LessonSerializer(serializers.ModelSerializer):
