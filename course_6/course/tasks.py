@@ -18,7 +18,7 @@ def course_update_mail(course_id: int) -> None:
     ]
 
     if recipient_list:
-        subject = f'Обновление курса {obj.title}'
+        subject = f'Обновление курса {course.title}'
         message = 'Произошло обновление курса'
         from_email = settings.EMAIL_HOST_USER
         email = EmailMessage(subject, message, from_email, recipient_list)
